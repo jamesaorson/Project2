@@ -15,9 +15,9 @@ public class Project2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Project2UI gui = new Project2UI();
+        Project2UI menuGUI = new Project2UI();
         
-        gui.setVisible(true);
+        menuGUI.setVisible(true);
         
         
     }
