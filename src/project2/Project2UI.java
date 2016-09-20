@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package project2;
-//import numeric.*;
 
 import java.awt.event.KeyEvent;
 
@@ -113,12 +112,14 @@ public class Project2UI extends javax.swing.JFrame {
         GCDDialog gcdDial = new GCDDialog();
         
         gcdDial.setVisible(true);
+        gcdDial.setLocationRelativeTo(null);
     }//GEN-LAST:event_gcdMenuItemActionPerformed
 
     private void factorialMenuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_factorialMenuitemActionPerformed
         FactorialDialog factorialDial = new FactorialDialog();
         
         factorialDial.setVisible(true);
+        factorialDial.setLocationRelativeTo(null);
     }//GEN-LAST:event_factorialMenuitemActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
