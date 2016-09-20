@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package project2;
+import java.awt.event.KeyEvent;
+import numeric.Gcd;
 
 /**
  *
@@ -29,18 +31,30 @@ public class GCDDialog extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         gcdLabel = new javax.swing.JLabel();
-        inputField = new javax.swing.JTextField();
+        inputField1 = new javax.swing.JTextField();
         computeButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        resultLabel = new javax.swing.JLabel();
+        resultField = new javax.swing.JTextField();
+        errorsLabel = new javax.swing.JLabel();
+        errorsField = new javax.swing.JTextField();
+        inputField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         gcdLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gcdLabel.setText("GCD");
 
-        inputField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        inputField.setText("Enter two numbers here");
+        inputField1.setText("Enter first number");
+        inputField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputField1FocusGained(evt);
+            }
+        });
+        inputField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputField1EnterKeyPressed(evt);
+            }
+        });
 
         computeButton.setText("Compute");
         computeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -49,10 +63,29 @@ public class GCDDialog extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Errors");
+        resultLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        resultLabel.setText("Result");
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        resultField.setEditable(false);
+        resultField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        errorsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorsLabel.setText("Errors");
+
+        errorsField.setEditable(false);
+        errorsField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        inputField2.setText("Enter second number");
+        inputField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputField2FocusGained(evt);
+            }
+        });
+        inputField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputField2EnterKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -62,14 +95,18 @@ public class GCDDialog extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gcdLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(inputField, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(computeButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(inputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputField2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(computeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(resultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(resultField)
+                            .addComponent(errorsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(errorsField))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -79,13 +116,18 @@ public class GCDDialog extends javax.swing.JFrame {
                 .addComponent(gcdLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(computeButton))
+                    .addComponent(inputField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(computeButton)
+                    .addComponent(inputField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(resultLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addComponent(resultField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(errorsLabel)
+                .addGap(18, 18, 18)
+                .addComponent(errorsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,8 +151,45 @@ public class GCDDialog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void computeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeButtonActionPerformed
-        // TODO add your handling code here:
+        resultField.setText("");
+        errorsField.setText("");
+        
+        try {
+            int x;
+            int y;
+            int gcd;
+            
+            x = Integer.parseInt(inputField1.getText());
+            y = Integer.parseInt(inputField2.getText());
+            gcd = Gcd.computeGCD(x, y);
+            
+            resultField.setText(Integer.toString(gcd));
+        }
+        
+        catch (NumberFormatException e) {
+            errorsField.setText("Both inputs must be valid integers");
+        }
     }//GEN-LAST:event_computeButtonActionPerformed
+
+    private void inputField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputField1FocusGained
+        inputField1.selectAll();
+    }//GEN-LAST:event_inputField1FocusGained
+
+    private void inputField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputField2FocusGained
+        inputField2.selectAll();
+    }//GEN-LAST:event_inputField2FocusGained
+
+    private void inputField1EnterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputField1EnterKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            computeButton.doClick();
+        }
+    }//GEN-LAST:event_inputField1EnterKeyPressed
+
+    private void inputField2EnterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputField2EnterKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            computeButton.doClick();
+        }
+    }//GEN-LAST:event_inputField2EnterKeyPressed
 
     /**
      * @param args the command line arguments
@@ -149,10 +228,13 @@ public class GCDDialog extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton computeButton;
+    private javax.swing.JTextField errorsField;
+    private javax.swing.JLabel errorsLabel;
     private javax.swing.JLabel gcdLabel;
-    private javax.swing.JTextField inputField;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField inputField1;
+    private javax.swing.JTextField inputField2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField resultField;
+    private javax.swing.JLabel resultLabel;
     // End of variables declaration//GEN-END:variables
 }

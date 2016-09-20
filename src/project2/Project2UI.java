@@ -6,6 +6,9 @@
 package project2;
 //import numeric.*;
 
+import java.awt.event.KeyEvent;
+
+
 /**
  *
  * @author James Osborne
@@ -37,6 +40,11 @@ public class Project2UI extends javax.swing.JFrame {
         factorialMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,7 +69,7 @@ public class Project2UI extends javax.swing.JFrame {
 
         jMenuBar1.add(fileMenu);
 
-        editMenu.setText("Edit");
+        editMenu.setText("Compute");
 
         gcdMenuItem.setText("GCD");
         gcdMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +120,12 @@ public class Project2UI extends javax.swing.JFrame {
         
         factorialDial.setVisible(true);
     }//GEN-LAST:event_factorialMenuitemActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments

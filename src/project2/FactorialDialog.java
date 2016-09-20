@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package project2;
+import java.awt.event.KeyEvent;
+import numeric.Factorial;
+import numeric.NegativeFactorialException;
+import numeric.OverflowException;
 
 /**
  *
@@ -31,12 +35,27 @@ public class FactorialDialog extends javax.swing.JFrame {
         factorialLabel = new javax.swing.JLabel();
         inputField = new javax.swing.JTextField();
         computeButton = new javax.swing.JButton();
+        resultLabel = new javax.swing.JLabel();
+        resultField = new javax.swing.JTextField();
+        errorsLabel = new javax.swing.JLabel();
+        errorsField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        factorialLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         factorialLabel.setText("Factorial");
 
         inputField.setText("Enter one number here");
+        inputField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputFieldFocusGained(evt);
+            }
+        });
+        inputField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputFieldEnterKeyPressed(evt);
+            }
+        });
 
         computeButton.setText("Compute");
         computeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -45,22 +64,37 @@ public class FactorialDialog extends javax.swing.JFrame {
             }
         });
 
+        resultLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        resultLabel.setText("Result");
+
+        resultField.setEditable(false);
+        resultField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        errorsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorsLabel.setText("Errors");
+
+        errorsField.setEditable(false);
+        errorsField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(factorialLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(computeButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(inputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(factorialLabel)))
-                .addGap(132, 132, 132))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(inputField, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(computeButton))
+                            .addComponent(resultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(resultField)
+                            .addComponent(errorsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(errorsField))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,10 +102,18 @@ public class FactorialDialog extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(factorialLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(computeButton)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(computeButton))
+                .addGap(18, 18, 18)
+                .addComponent(resultLabel)
+                .addGap(18, 18, 18)
+                .addComponent(resultField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(errorsLabel)
+                .addGap(18, 18, 18)
+                .addComponent(errorsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,8 +137,32 @@ public class FactorialDialog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void computeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeButtonActionPerformed
-        // TODO add your handling code here:
+        resultField.setText("");
+        errorsField.setText("");
+        
+        try {
+            int input = Integer.parseInt(inputField.getText());
+            double factorial = Factorial.computeFactorial(input);
+            resultField.setText(Double.toString(factorial));
+        }
+        
+        catch (NumberFormatException e) {
+            errorsField.setText("Both inputs must be valid integers");
+        }
+        catch (NegativeFactorialException | OverflowException e) {
+            errorsField.setText(e.getMessage());
+        }
     }//GEN-LAST:event_computeButtonActionPerformed
+
+    private void inputFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputFieldFocusGained
+        inputField.selectAll();
+    }//GEN-LAST:event_inputFieldFocusGained
+
+    private void inputFieldEnterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputFieldEnterKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+          computeButton.doClick();
+        }
+    }//GEN-LAST:event_inputFieldEnterKeyPressed
 
     /**
      * @param args the command line arguments
@@ -135,8 +201,12 @@ public class FactorialDialog extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton computeButton;
+    private javax.swing.JTextField errorsField;
+    private javax.swing.JLabel errorsLabel;
     private javax.swing.JLabel factorialLabel;
     private javax.swing.JTextField inputField;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField resultField;
+    private javax.swing.JLabel resultLabel;
     // End of variables declaration//GEN-END:variables
 }
