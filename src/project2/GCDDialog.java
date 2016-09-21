@@ -1,16 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project2;
 import java.awt.event.KeyEvent;
 import numeric.Gcd;
 
 /**
- *
- * @author Owner
- */
+  * This class implements the GCD GUI, including all of its visuals and events.
+  *
+  * @author James Osborne
+  * @version 1.0  
+  * File: GCDDialog.java
+  * Created: 20 Sept 2016
+  * ©Copyright James Osborne. All rights reserved.
+  * Summary of Modifications:
+  *     20 Sept 2016 - JAO - Created text fields (input1, input2, result,
+  *     errors), labels (GCD, result, errors), and compute button. Also added
+  *     functionality to all of these and made result and errors text fields
+  *     unable to be edited.
+  * 
+  * Description: This class provides the design and functionality of the 
+  * GCD GUI which will allow the calculation of the GCD of any two integers.
+  */
 public class GCDDialog extends javax.swing.JFrame {
 
     /**
@@ -150,10 +158,15 @@ public class GCDDialog extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //When the compute button is activated, this method does any necessary
+    //error handling and sets all relevant text fields 
+    //with their new corresponding data to inform the user.
     private void computeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeButtonActionPerformed
+        //Clears text fiels to avoid display of unnecessary information.
         resultField.setText("");
         errorsField.setText("");
         
+        //Tries on dangerous operation of using Integer.parseInt()
         try {
             int x;
             int y;
@@ -163,28 +176,40 @@ public class GCDDialog extends javax.swing.JFrame {
             y = Integer.parseInt(inputField2.getText());
             gcd = Gcd.computeGCD(x, y);
             
+            //Displays answer in resultField as long as Integer.parseInt()
+            //did not throw any exceptions.
             resultField.setText(Integer.toString(gcd));
         }
         
+        //Catches possible exception thrown from Integer.parseInt() and displays
+        //error message to errorsField.
         catch (NumberFormatException e) {
             errorsField.setText("Both inputs must be valid integers");
         }
     }//GEN-LAST:event_computeButtonActionPerformed
 
+    //However user selects inputField1, it will highlight and select the text
+    //currently in the field allowing quicker editing.
     private void inputField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputField1FocusGained
         inputField1.selectAll();
     }//GEN-LAST:event_inputField1FocusGained
 
+    //However user selects inputField2, it will highlight and select the text
+    //currently in the field allowing quicker editing.
     private void inputField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputField2FocusGained
         inputField2.selectAll();
     }//GEN-LAST:event_inputField2FocusGained
 
+    //If the enter key is pressed while focus is on inputField1,
+    //activates compute button as if it was explicitly clicked.
     private void inputField1EnterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputField1EnterKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             computeButton.doClick();
         }
     }//GEN-LAST:event_inputField1EnterKeyPressed
 
+    //If the enter key is pressed while focus is on inputField2,
+    //activates compute button as if it was explicitly clicked.
     private void inputField2EnterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputField2EnterKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             computeButton.doClick();

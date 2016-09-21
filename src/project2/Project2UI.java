@@ -1,17 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project2;
 
 import java.awt.event.KeyEvent;
 
-
 /**
- *
- * @author James Osborne
- */
+  * This class implements the initial GUI which will allow the user to choose
+  * to continue into calculating GCD or factorial in a different GUI/dialog.
+  *
+  * @author James Osborne
+  * @version 1.0  
+  * File: Project2UI.java
+  * Created: 16 Sept 2016
+  * ©Copyright James Osborne. All rights reserved.
+  * Summary of Modifications:
+  *     16 Sept 2016 – JAO – Created all the visuals of this GUI.
+  *     20 Sept 2016 - JAO - Added the events for menu items and 
+  *     closing with the ESC key.
+  * 
+  * Description: This class provides the design and functionality of the 
+  * initial GUI which will allow the user to access the GCD and Factorial GUIs.
+  */
 public class Project2UI extends javax.swing.JFrame {
 
     /**
@@ -104,24 +111,33 @@ public class Project2UI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Closes the entire program when exit menu item is selected.
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
+    //Declares and initializes thee GCD GUI.
     private void gcdMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gcdMenuItemActionPerformed
         GCDDialog gcdDial = new GCDDialog();
         
+        //Makes the GUI visible to the user.
         gcdDial.setVisible(true);
+        //Sets the initial location of the GUI to the middle of the screen.
         gcdDial.setLocationRelativeTo(null);
     }//GEN-LAST:event_gcdMenuItemActionPerformed
 
+    //Declarss and initializes the Factorial GUI.
     private void factorialMenuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_factorialMenuitemActionPerformed
         FactorialDialog factorialDial = new FactorialDialog();
         
+        //Makes the GUI visible to the user.
         factorialDial.setVisible(true);
+        //Sets the initial location of the GUI to the middle of the screen.
         factorialDial.setLocationRelativeTo(null);
     }//GEN-LAST:event_factorialMenuitemActionPerformed
 
+    //If user presses the ESC key in this GUI, it will close the entire program,
+    //not only the initial GUI.
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);

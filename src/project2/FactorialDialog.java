@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package project2;
 import java.awt.event.KeyEvent;
 import numeric.Factorial;
@@ -10,9 +5,24 @@ import numeric.NegativeFactorialException;
 import numeric.OverflowException;
 
 /**
- *
- * @author Owner
- */
+  * This class implements the Factorial GUI, 
+  * including all of its visuals and events.
+  *
+  * @author James Osborne
+  * @version 1.0  
+  * File: FactorialDialog.java
+  * Created: 20 Sept 2016
+  * ©Copyright James Osborne. All rights reserved.
+  * Summary of Modifications:
+  *     20 Sept 2016 - JAO - Created text fields (input, result,
+  *     errors), labels (GCD, result, errors), and compute button. Also added
+  *     functionality to all of these and made result and errors text fields
+  *     unable to be edited.
+  * 
+  * Description: This class provides the design and functionality of the 
+  * Factorial GUI which will allow the factorial to be calculated
+  * for any valid, non-negative integer.
+  */
 public class FactorialDialog extends javax.swing.JFrame {
 
     /**
@@ -136,28 +146,47 @@ public class FactorialDialog extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //When the compute button is activated, this method does any necessary
+    //error handling and sets all relevant text fields 
+    //with their new corresponding data to inform the user.
     private void computeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeButtonActionPerformed
+        //Clears text fields to avoid display of unnecessary information.
         resultField.setText("");
         errorsField.setText("");
         
+        //Tries on dangerous operations of using Integer.parseInt()
+        //and Factorial.computeFactorial()
         try {
-            int input = Integer.parseInt(inputField.getText());
-            double factorial = Factorial.computeFactorial(input);
+            int input;
+            double factorial;
+            
+            input = Integer.parseInt(inputField.getText());
+            factorial = Factorial.computeFactorial(input);
+            
+            //Displays answer in resultField if no exceptions are thrown.
             resultField.setText(Double.toString(factorial));
         }
         
+        //Catches possible exception thrown from Integer.parseInt() and displays
+        //error message to errorsField.
         catch (NumberFormatException e) {
             errorsField.setText("Both inputs must be valid integers");
         }
+        //Catches possible exceptions thrown from Factorial.computeFactorial()
+        //and displays their error message to errorsField.
         catch (NegativeFactorialException | OverflowException e) {
             errorsField.setText(e.getMessage());
         }
     }//GEN-LAST:event_computeButtonActionPerformed
 
+    //However user selects inputField, it will highlight and select the text
+    //currently in the field allowing quicker editing.
     private void inputFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputFieldFocusGained
         inputField.selectAll();
     }//GEN-LAST:event_inputFieldFocusGained
 
+    //If the enter key is pressed while focus is on inputField,
+    //activates compute button as if it was explicitly clicked.
     private void inputFieldEnterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputFieldEnterKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
           computeButton.doClick();
