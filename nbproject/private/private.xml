@@ -5,6 +5,12 @@
         <group>
             <file>file:/C:/Users/Precinct/Documents/NetBeansProjects/Project2/src/project2/Project2UI.java</file>
             <file>file:/C:/Users/Precinct/Documents/NetBeansProjects/Project2/src/project2/Project2.java</file>
+            <file>file:/C:/Users/Precinct/Documents/NetBeansProjects/Project2/src/numeric/OverflowException.java</file>
+            <file>file:/C:/Users/Precinct/Documents/NetBeansProjects/Project2/src/project2/GCDDialog.java</file>
+            <file>file:/C:/Users/Precinct/Documents/NetBeansProjects/Project2/src/numeric/Gcd.java</file>
+            <file>file:/C:/Users/Precinct/Documents/NetBeansProjects/Project2/src/project2/FactorialDialog.java</file>
+            <file>file:/C:/Users/Precinct/Documents/NetBeansProjects/Project2/src/numeric/Factorial.java</file>
+            <file>file:/C:/Users/Precinct/Documents/NetBeansProjects/Project2/src/numeric/NegativeFactorialException.java</file>
         </group>
     </open-files>
 </project-private>

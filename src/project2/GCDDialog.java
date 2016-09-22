@@ -3,7 +3,8 @@ import java.awt.event.KeyEvent;
 import numeric.Gcd;
 
 /**
-  * This class implements the GCD GUI, including all of its visuals and events.
+  * This class implements the GCD dialog, 
+  * including all of its visuals and events.
   *
   * @author James Osborne
   * @version 1.0  
@@ -17,14 +18,15 @@ import numeric.Gcd;
   *     unable to be edited.
   * 
   * Description: This class provides the design and functionality of the 
-  * GCD GUI which will allow the calculation of the GCD of any two integers.
+  * GCD dialog which will allow the calculation of the GCD of any two integers.
   */
-public class GCDDialog extends javax.swing.JFrame {
+public class GCDDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form GCDDialog
+     * Creates new form GCDDialog1
      */
-    public GCDDialog() {
+    public GCDDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -106,7 +108,7 @@ public class GCDDialog extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(inputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                .addComponent(inputField1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(inputField2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,7 +137,7 @@ public class GCDDialog extends javax.swing.JFrame {
                 .addComponent(errorsLabel)
                 .addGap(18, 18, 18)
                 .addComponent(errorsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,47 +160,11 @@ public class GCDDialog extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //When the compute button is activated, this method does any necessary
-    //error handling and sets all relevant text fields 
-    //with their new corresponding data to inform the user.
-    private void computeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeButtonActionPerformed
-        //Clears text fiels to avoid display of unnecessary information.
-        resultField.setText("");
-        errorsField.setText("");
-        
-        //Tries on dangerous operation of using Integer.parseInt()
-        try {
-            int x;
-            int y;
-            int gcd;
-            
-            x = Integer.parseInt(inputField1.getText());
-            y = Integer.parseInt(inputField2.getText());
-            gcd = Gcd.computeGCD(x, y);
-            
-            //Displays answer in resultField as long as Integer.parseInt()
-            //did not throw any exceptions.
-            resultField.setText(Integer.toString(gcd));
-        }
-        
-        //Catches possible exception thrown from Integer.parseInt() and displays
-        //error message to errorsField.
-        catch (NumberFormatException e) {
-            errorsField.setText("Both inputs must be valid integers");
-        }
-    }//GEN-LAST:event_computeButtonActionPerformed
-
     //However user selects inputField1, it will highlight and select the text
     //currently in the field allowing quicker editing.
     private void inputField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputField1FocusGained
         inputField1.selectAll();
     }//GEN-LAST:event_inputField1FocusGained
-
-    //However user selects inputField2, it will highlight and select the text
-    //currently in the field allowing quicker editing.
-    private void inputField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputField2FocusGained
-        inputField2.selectAll();
-    }//GEN-LAST:event_inputField2FocusGained
 
     //If the enter key is pressed while focus is on inputField1,
     //activates compute button as if it was explicitly clicked.
@@ -207,6 +173,42 @@ public class GCDDialog extends javax.swing.JFrame {
             computeButton.doClick();
         }
     }//GEN-LAST:event_inputField1EnterKeyPressed
+
+    //When the compute button is activated, this method does any necessary
+    //error handling and sets all relevant text fields 
+    //with their new corresponding data to inform the user.
+    private void computeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeButtonActionPerformed
+        //Clears text fiels to avoid display of unnecessary information.
+        resultField.setText("");
+        errorsField.setText("");
+
+        //Tries on dangerous operation of using Integer.parseInt()
+        try {
+            int x;
+            int y;
+            int gcd;
+
+            x = Integer.parseInt(inputField1.getText());
+            y = Integer.parseInt(inputField2.getText());
+            gcd = Gcd.computeGCD(x, y);
+
+            //Displays answer in resultField as long as Integer.parseInt()
+            //did not throw any exceptions.
+            resultField.setText(Integer.toString(gcd));
+        }
+
+        //Catches possible exception thrown from Integer.parseInt() and displays
+        //error message to errorsField.
+        catch (NumberFormatException e) {
+            errorsField.setText("Both inputs must be valid integers");
+        }
+    }//GEN-LAST:event_computeButtonActionPerformed
+
+    //However user selects inputField2, it will highlight and select the text
+    //currently in the field allowing quicker editing.
+    private void inputField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputField2FocusGained
+        inputField2.selectAll();
+    }//GEN-LAST:event_inputField2FocusGained
 
     //If the enter key is pressed while focus is on inputField2,
     //activates compute button as if it was explicitly clicked.
@@ -242,11 +244,19 @@ public class GCDDialog extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GCDDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GCDDialog().setVisible(true);
+                GCDDialog dialog = new GCDDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

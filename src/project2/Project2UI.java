@@ -118,22 +118,23 @@ public class Project2UI extends javax.swing.JFrame {
 
     //Declares and initializes thee GCD GUI.
     private void gcdMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gcdMenuItemActionPerformed
-        GCDDialog gcdDial = new GCDDialog();
+        GCDDialog gcdDial = new GCDDialog(new javax.swing.JFrame(), true);
         
-        //Makes the GUI visible to the user.
+        //Makes the dialog visible to the user.
         gcdDial.setVisible(true);
-        //Sets the initial location of the GUI to the middle of the screen.
-        gcdDial.setLocationRelativeTo(null);
+        //Makes it so when dialog is shown, you cannot select from initial GUI.
+        gcdDial.setModal(true);
     }//GEN-LAST:event_gcdMenuItemActionPerformed
 
     //Declarss and initializes the Factorial GUI.
     private void factorialMenuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_factorialMenuitemActionPerformed
-        FactorialDialog factorialDial = new FactorialDialog();
+        FactorialDialog factorialDial = 
+        new FactorialDialog(new javax.swing.JFrame(), true);
         
         //Makes the GUI visible to the user.
-        factorialDial.setVisible(true);
-        //Sets the initial location of the GUI to the middle of the screen.
-        factorialDial.setLocationRelativeTo(null);
+        factorialDial.setVisible(true);     
+        //Makes it so when dialog is shown, you cannot select from initial GUI.
+        factorialDial.setModal(true);
     }//GEN-LAST:event_factorialMenuitemActionPerformed
 
     //If user presses the ESC key in this GUI, it will close the entire program,

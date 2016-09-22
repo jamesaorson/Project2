@@ -5,7 +5,7 @@ import numeric.NegativeFactorialException;
 import numeric.OverflowException;
 
 /**
-  * This class implements the Factorial GUI, 
+  * This class implements the Factorial dialog, 
   * including all of its visuals and events.
   *
   * @author James Osborne
@@ -20,15 +20,16 @@ import numeric.OverflowException;
   *     unable to be edited.
   * 
   * Description: This class provides the design and functionality of the 
-  * Factorial GUI which will allow the factorial to be calculated
+  * Factorial dialog which will allow the factorial to be calculated
   * for any valid, non-negative integer.
   */
-public class FactorialDialog extends javax.swing.JFrame {
+public class FactorialDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form FactorialDialog
+     * Creates new form FactorialDialog1
      */
-    public FactorialDialog() {
+    public FactorialDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -146,6 +147,20 @@ public class FactorialDialog extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //However user selects inputField, it will highlight and select the text
+    //currently in the field allowing quicker editing.
+    private void inputFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputFieldFocusGained
+        inputField.selectAll();
+    }//GEN-LAST:event_inputFieldFocusGained
+
+    //If the enter key is pressed while focus is on inputField,
+    //activates compute button as if it was explicitly clicked.
+    private void inputFieldEnterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputFieldEnterKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            computeButton.doClick();
+        }
+    }//GEN-LAST:event_inputFieldEnterKeyPressed
+
     //When the compute button is activated, this method does any necessary
     //error handling and sets all relevant text fields 
     //with their new corresponding data to inform the user.
@@ -153,20 +168,20 @@ public class FactorialDialog extends javax.swing.JFrame {
         //Clears text fields to avoid display of unnecessary information.
         resultField.setText("");
         errorsField.setText("");
-        
+
         //Tries on dangerous operations of using Integer.parseInt()
         //and Factorial.computeFactorial()
         try {
             int input;
             double factorial;
-            
+
             input = Integer.parseInt(inputField.getText());
             factorial = Factorial.computeFactorial(input);
-            
+
             //Displays answer in resultField if no exceptions are thrown.
             resultField.setText(Double.toString(factorial));
         }
-        
+
         //Catches possible exception thrown from Integer.parseInt() and displays
         //error message to errorsField.
         catch (NumberFormatException e) {
@@ -178,20 +193,6 @@ public class FactorialDialog extends javax.swing.JFrame {
             errorsField.setText(e.getMessage());
         }
     }//GEN-LAST:event_computeButtonActionPerformed
-
-    //However user selects inputField, it will highlight and select the text
-    //currently in the field allowing quicker editing.
-    private void inputFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputFieldFocusGained
-        inputField.selectAll();
-    }//GEN-LAST:event_inputFieldFocusGained
-
-    //If the enter key is pressed while focus is on inputField,
-    //activates compute button as if it was explicitly clicked.
-    private void inputFieldEnterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputFieldEnterKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-          computeButton.doClick();
-        }
-    }//GEN-LAST:event_inputFieldEnterKeyPressed
 
     /**
      * @param args the command line arguments
@@ -219,11 +220,19 @@ public class FactorialDialog extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FactorialDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FactorialDialog().setVisible(true);
+                FactorialDialog dialog = new FactorialDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
