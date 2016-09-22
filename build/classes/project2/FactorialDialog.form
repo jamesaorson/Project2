@@ -112,7 +112,7 @@
             <Property name="text" type="java.lang.String" value="Compute"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="computeButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="computeButtonAction"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="resultLabel">

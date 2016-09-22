@@ -71,7 +71,7 @@ public class FactorialDialog extends javax.swing.JDialog {
         computeButton.setText("Compute");
         computeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                computeButtonActionPerformed(evt);
+                computeButtonAction(evt);
             }
         });
 
@@ -164,7 +164,7 @@ public class FactorialDialog extends javax.swing.JDialog {
     //When the compute button is activated, this method does any necessary
     //error handling and sets all relevant text fields 
     //with their new corresponding data to inform the user.
-    private void computeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeButtonActionPerformed
+    private void computeButtonAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computeButtonAction
         //Clears text fields to avoid display of unnecessary information.
         resultField.setText("");
         errorsField.setText("");
@@ -192,7 +192,7 @@ public class FactorialDialog extends javax.swing.JDialog {
         catch (NegativeFactorialException | OverflowException e) {
             errorsField.setText(e.getMessage());
         }
-    }//GEN-LAST:event_computeButtonActionPerformed
+    }//GEN-LAST:event_computeButtonAction
 
     /**
      * @param args the command line arguments

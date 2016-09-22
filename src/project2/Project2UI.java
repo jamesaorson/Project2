@@ -40,10 +40,10 @@ public class Project2UI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        exitMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
-        gcdMenuItem = new javax.swing.JMenuItem();
-        factorialMenuItem = new javax.swing.JMenuItem();
+        exitItem = new javax.swing.JMenuItem();
+        computeMenu = new javax.swing.JMenu();
+        gcdItem = new javax.swing.JMenuItem();
+        factorialItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -65,35 +65,35 @@ public class Project2UI extends javax.swing.JFrame {
 
         fileMenu.setText("File");
 
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        exitItem.setText("Exit");
+        exitItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
+                exitItemAction(evt);
             }
         });
-        fileMenu.add(exitMenuItem);
+        fileMenu.add(exitItem);
 
         jMenuBar1.add(fileMenu);
 
-        editMenu.setText("Compute");
+        computeMenu.setText("Compute");
 
-        gcdMenuItem.setText("GCD");
-        gcdMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        gcdItem.setText("GCD");
+        gcdItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gcdMenuItemActionPerformed(evt);
+                gcdItemAction(evt);
             }
         });
-        editMenu.add(gcdMenuItem);
+        computeMenu.add(gcdItem);
 
-        factorialMenuItem.setText("Factorial");
-        factorialMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        factorialItem.setText("Factorial");
+        factorialItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                factorialMenuitemActionPerformed(evt);
+                factorialItemAction(evt);
             }
         });
-        editMenu.add(factorialMenuItem);
+        computeMenu.add(factorialItem);
 
-        jMenuBar1.add(editMenu);
+        jMenuBar1.add(computeMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -112,22 +112,22 @@ public class Project2UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //Closes the entire program when exit menu item is selected.
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+    private void exitItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemAction
         System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    }//GEN-LAST:event_exitItemAction
 
     //Declares and initializes thee GCD GUI.
-    private void gcdMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gcdMenuItemActionPerformed
+    private void gcdItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gcdItemAction
         GCDDialog gcdDial = new GCDDialog(new javax.swing.JFrame(), true);
         
         //Makes the dialog visible to the user.
         gcdDial.setVisible(true);
         //Makes it so when dialog is shown, you cannot select from initial GUI.
         gcdDial.setModal(true);
-    }//GEN-LAST:event_gcdMenuItemActionPerformed
+    }//GEN-LAST:event_gcdItemAction
 
     //Declarss and initializes the Factorial GUI.
-    private void factorialMenuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_factorialMenuitemActionPerformed
+    private void factorialItemAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_factorialItemAction
         FactorialDialog factorialDial = 
         new FactorialDialog(new javax.swing.JFrame(), true);
         
@@ -135,7 +135,7 @@ public class Project2UI extends javax.swing.JFrame {
         factorialDial.setVisible(true);     
         //Makes it so when dialog is shown, you cannot select from initial GUI.
         factorialDial.setModal(true);
-    }//GEN-LAST:event_factorialMenuitemActionPerformed
+    }//GEN-LAST:event_factorialItemAction
 
     //If user presses the ESC key in this GUI, it will close the entire program,
     //not only the initial GUI.
@@ -181,11 +181,11 @@ public class Project2UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu editMenu;
-    private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenuItem factorialMenuItem;
+    private javax.swing.JMenu computeMenu;
+    private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenuItem factorialItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenuItem gcdMenuItem;
+    private javax.swing.JMenuItem gcdItem;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
