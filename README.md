@@ -1,1 +1,1 @@
-# Project2
+MOVED TO [SOURCEHUT](https://git.sr.ht/~nixnomad/college-data-structures-2)
